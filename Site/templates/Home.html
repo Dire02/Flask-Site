@@ -1,0 +1,42 @@
+{% extends './Layout/base.html' %}
+
+{% block content %}
+   <h1 style="text-align:center; margin:4.5rem 0 2rem 0; font-weight:500; font-size: 120px; text-shadow:0 0 0.1em rgb(255, 255, 255)">Shop</h1>
+   <hr>
+   <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+   {% with messages = get_flashed_messages(with_categories = true) %}
+   {% if messages %}
+   {% for category, message in messages %}
+   <div class="alert alert-{{category}} mt-3">{{ message }}</div>
+   {% endfor %}
+   {% endif %}
+   {% endwith %}
+</div>
+</div>
+</div>
+
+   <div class="d-flex justify-content-center flex-wrap">
+
+    {% for mug in mugs %}
+        <div class="card" style="width: 18rem; margin:1rem; border: 1px solid black">
+            <a class="text-dark text-decoration-none" href="{{ url_for('getMug', mug_id=mug.id) }}">
+            <img style="width:80%; margin-top: 10px; padding-left: 3rem" src="{{mug.img_url}}" class="card-img-top" alt="{{ mug.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ mug.title }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item"></li>
+            <li class="list-group-item">{{ mug.caption }}</li>
+            <li class="list-group-item"><strong>Price:</strong> ${{ mug.price }}</li>
+            </ul></a>
+            <div class="card-body">
+                <button type="button" class="btn btn-success btn-sm">
+                    <a href="/{{mug.id}}/add_to_cart" class="card-link" style="color:white; text-decoration:none">Add to Cart</a>
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends './Layout/base.html' %}
+
+{% block content %}
+<div class="container custom-margin-top">
+    <div class="row">
+        {% include './Layout/Menu.html'%}
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header">Make admin</div>
+                <div class="card-body">
+
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                    <form action="{{ url_for('MakeAdminPage') }}" enctype="multipart/form-data" method="post">
+
+                        <div class="form-group mb-3">
+                            <input type="text" name="username" class="form-control" placeholder="enter username">
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-warning">Make admin</button>
+                        </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

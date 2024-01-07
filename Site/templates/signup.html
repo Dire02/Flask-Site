@@ -1,0 +1,61 @@
+{% extends './Layout/base.html' %}
+{% block content %}
+
+
+
+<div class="container custom-margin-top">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2>Sign Up Form</h2>
+            <hr />
+            {% if form.name.errors %} {% for error in form.name.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %} {% endif %} {% if form.email.errors %} {% for error in
+            form.email.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %} {% endif %} {% if form.password.errors %} {% for error in
+            form.password.errors %}
+            <div class="alert alert-danger">{{ error }} </div>
+            {% endfor %} {% endif %} {% if form.confirm.errors %} {% for error in
+            form.confirm.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %} {% endif %}
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+
+            <form action="{{ url_for('SignUp') }}" method="post" novalidate>
+                {{ form.csrf_token }}
+                <div class="form-group mt-3">
+                    {{ form.name(placeholder='Enter Name', class="form-control") }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form.email(placeholder='Enter Email', class="form-control") }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form.password(placeholder='Enter Password', class="form-control") }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form.confirm(placeholder='Enter Password Again', class="form-control") }}
+                </div>
+
+                <div class="form-group mt-3">
+                    {{ form.recaptcha }}
+                </div>
+                
+                <div class="form-group mt-3">
+                    <button class="btn btn-info w-100">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

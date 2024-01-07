@@ -1,0 +1,23 @@
+body {
+    display: block;
+    justify-content: center;
+    margin: 0;
+    background-image: url("/static/img/bg1.jpg");
+    background-color: #cccccc;
+    
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+  
+  }
+  .navbar.fixed-top.navbar-expand-lg {
+    background: rgb(34, 193, 195);
+    background: linear-gradient(90deg, rgb(254, 172, 207) 0%, rgba(148,187,233,1) 100%);
+  }
+a
+{
+    text-decoration:none!important ;
+}
+.custom-margin-top {
+    margin-top: 70px; /* Adjust the value as per your preference */
+  }
